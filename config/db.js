@@ -3,6 +3,7 @@ const config = require('config');
 const db = config.get('mongoURI');
 const connectDB = async () => {
     try {
+        // Since connect() returns a promise we have to use async await here. Good to have.
         await mongoose.connect(db, {
             useNewUrlParser: true,
             useUnifiedTopology: true
