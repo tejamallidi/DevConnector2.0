@@ -43,7 +43,12 @@ router.post(
     ],
   ],
   async (req, res) => {
-    CheckErrors(req);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
     const {
       company,
       location,
@@ -187,7 +192,12 @@ router.patch(
     ],
   ],
   async (req, res) => {
-    CheckErrors(req);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
     const {
       title,
       company,
@@ -253,7 +263,12 @@ router.patch(
     ],
   ],
   async (req, res) => {
-    CheckErrors(req);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
     const {
       school,
       degree,
@@ -332,15 +347,5 @@ router.get("/github/:username", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-// Check if there are any validation errors in the request.
-function CheckErrors(req) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array(),
-    });
-  }
-}
 
 module.exports = router;
