@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types";
 
-const Register = () => {
+const Register = (props) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +25,7 @@ const Register = () => {
   function handleSubmit(event) {
     event.preventDefault();
     if (password !== password2) {
-      console.log("Passwords do not match.");
+      props.setAlert("Passwords do not match.", "danger");
     } else if (password.length === 0 || password2.length === 0) {
       console.log("Password cannot be empty.");
     } else {
@@ -90,4 +93,9 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.prototypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+// Connect will help us to make calls to our action files.
+// It expects state to be mapped and object with actions that we want to trigger
+export default connect(null, { setAlert })(Register);
