@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
@@ -32,6 +32,10 @@ const Register = (props) => {
     } else {
       props.register({ name, email, password });
     }
+  }
+
+  if (props.isAuthenticated) {
+    return <Redirect to='/dashboard' />;
   }
 
   return (
@@ -97,7 +101,12 @@ const Register = (props) => {
 Register.prototypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 // Connect will help us to make calls to our action files.
 // It expects state to be mapped and object with actions that we want to trigger
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);
