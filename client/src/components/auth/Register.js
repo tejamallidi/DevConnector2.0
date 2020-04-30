@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 
 const Register = (props) => {
@@ -27,9 +28,9 @@ const Register = (props) => {
     if (password !== password2) {
       props.setAlert("Passwords do not match.", "danger");
     } else if (password.length === 0 || password2.length === 0) {
-      console.log("Password cannot be empty.");
+      props.setAlert("Password cannot be empty.", "danger");
     } else {
-      console.log("Success");
+      props.register({ name, email, password });
     }
   }
 
@@ -47,7 +48,7 @@ const Register = (props) => {
             name='name'
             value={name}
             onChange={handleChange}
-            required
+            //required
           />
         </div>
         <div className='form-group'>
@@ -57,7 +58,7 @@ const Register = (props) => {
             name='email'
             value={email}
             onChange={handleChange}
-            required
+            //required
           />
           <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a
@@ -69,7 +70,7 @@ const Register = (props) => {
             type='password'
             placeholder='Password'
             name='password'
-            minLength='6'
+            //minLength='6'
             value={password}
             onChange={handleChange}
           />
@@ -79,7 +80,7 @@ const Register = (props) => {
             type='password'
             placeholder='Confirm Password'
             name='password2'
-            minLength='6'
+            //minLength='6'
             value={password2}
             onChange={handleChange}
           />
@@ -95,7 +96,8 @@ const Register = (props) => {
 
 Register.prototypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 // Connect will help us to make calls to our action files.
 // It expects state to be mapped and object with actions that we want to trigger
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
