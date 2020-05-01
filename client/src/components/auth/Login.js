@@ -3,8 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+import { setAlert } from "../../actions/alert";
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -41,7 +42,6 @@ const Login = ({ login, isAuthenticated }) => {
             name='email'
             value={email}
             onChange={onChange}
-            required
           />
         </div>
         <div className='form-group'>
@@ -51,7 +51,6 @@ const Login = ({ login, isAuthenticated }) => {
             name='password'
             value={password}
             onChange={onChange}
-            minLength='6'
           />
         </div>
         <input type='submit' className='btn btn-primary' value='Login' />
@@ -66,10 +65,11 @@ const Login = ({ login, isAuthenticated }) => {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { setAlert, login })(Login);

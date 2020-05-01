@@ -52,7 +52,6 @@ const Register = (props) => {
             name='name'
             value={name}
             onChange={handleChange}
-            //required
           />
         </div>
         <div className='form-group'>
@@ -62,7 +61,6 @@ const Register = (props) => {
             name='email'
             value={email}
             onChange={handleChange}
-            //required
           />
           <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a
@@ -74,7 +72,6 @@ const Register = (props) => {
             type='password'
             placeholder='Password'
             name='password'
-            //minLength='6'
             value={password}
             onChange={handleChange}
           />
@@ -84,7 +81,6 @@ const Register = (props) => {
             type='password'
             placeholder='Confirm Password'
             name='password2'
-            //minLength='6'
             value={password2}
             onChange={handleChange}
           />
