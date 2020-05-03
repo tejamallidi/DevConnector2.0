@@ -17,7 +17,7 @@ const Dashboard = ({
   // To load the profile data on loading the dashboard component we are using useEffect hook
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
   return loading && profile == null ? (
     <Spinner />
   ) : (
