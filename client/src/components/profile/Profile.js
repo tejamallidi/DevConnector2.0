@@ -23,7 +23,12 @@ const Profile = ({
   return (
     <Fragment>
       {profile === null || loading ? (
-        <Spinner />
+        <Fragment>
+          <p className='lead'>Looks like you don't have a profile yet!</p>
+          <Link to='/create-profile' className='btn btn-primary'>
+            Create Profile
+          </Link>
+        </Fragment>
       ) : (
         <Fragment>
           <Link to='/profiles' className='btn btn-light'>
