@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://surya:surya@cluster0-s8umm.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken",
+    "githubToken": "98ecf8325159a977aa4a211e8417996bbbd7348f"
+}
